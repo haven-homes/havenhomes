@@ -55,8 +55,8 @@ gulp.task('images', () => {
 
 // CSS settings
 var css = {
-  src         : dir.src + 'assets/scss/style.scss',
-  watch       : dir.src + 'assets/scss/**/*',
+  src         : dir.src + 'assets/styles/main.scss',
+  watch       : dir.src + 'assets/styles/**/**/**/**',
   build       : dir.build,
   sassOpts: {
     outputStyle     : 'nested',
@@ -86,8 +86,8 @@ gulp.task('css', () => {
 
 // JavaScript settings
 const js = {
-  src         : dir.src + 'assets/js/**/*',
-  build       : dir.build + 'assets/js/',
+  src         : dir.src + 'assets/scripts/**/*',
+  build       : dir.build + 'assets/scripts/',
   filename    : 'scripts.js'
 };
 
@@ -115,7 +115,7 @@ const syncOpts = {
   notify      : false,
   ghostMode   : false,
   ui: {
-    port: 8001
+    port: 8000
   }
 };
 

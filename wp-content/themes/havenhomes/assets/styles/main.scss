@@ -8,4 +8,14 @@
     Tags: Gulp
 */
 
-@import '_base';
+/**
+ * Globals
+ * Import all globals.
+ */
+@import 'globals';
+
+/**
+ * Base
+ * Import basic site setup and helper classes.
+ */
+@import 'base/imports';
