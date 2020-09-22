@@ -5,8 +5,8 @@ const
 
   // source and build folders
   dir = {
-    src         : '',
-    build       : '/var/www/wp-content/themes/havenhomes/'
+    src         : './',
+    build       : './'
   },
 
   // Gulp and plugins
@@ -55,8 +55,8 @@ gulp.task('images', () => {
 
 // CSS settings
 var css = {
-  src         : dir.src + 'assets/styles/main.scss',
-  watch       : dir.src + 'assets/styles/**/**/**/**',
+  src         : dir.src + 'assets/styles/style.scss',
+  watch       : dir.src + 'assets/styles/**/*',
   build       : dir.build,
   sassOpts: {
     outputStyle     : 'nested',
@@ -66,9 +66,9 @@ var css = {
   },
   processors: [
     require('postcss-assets')({
-      loadPaths: ['images/'],
+      loadPaths: ['assets/images/'],
       basePath: dir.build,
-      baseUrl: '/wp-content/themes/havenhomes/'
+      baseUrl: './'
     }),
     require('css-mqpacker'),
     require('cssnano')
@@ -99,8 +99,8 @@ gulp.task('js', () => {
     .pipe(concat(js.filename))
     .pipe(stripdebug())
     .pipe(uglify())
-    .pipe(gulp.dest(js.build))
-    .pipe(browsersync ? browsersync.reload({ stream: true }) : gutil.noop());
+    .pipe(gulp.dest(js.build));
+//    .pipe(browsersync ? browsersync.reload({ stream: true }) : gutil.noop());
 
 });
 
@@ -108,40 +108,40 @@ gulp.task('js', () => {
 gulp.task('build', gulp.parallel('php', 'images', 'css', 'js'));
 
 // Browsersync options
-const syncOpts = {
-  proxy       : 'localhost',
-  files       : dir.build + '**/*',
-  open        : false,
-  notify      : false,
-  ghostMode   : false,
-  ui: {
-    port: 8000
-  }
-};
+//const syncOpts = {
+//  proxy       : 'localhost',
+//  files       : dir.build + '**/*',
+//  open        : false,
+//  notify      : false,
+//  ghostMode   : false,
+//  ui: {
+//    port: 8000
+//  }
+//};
 
 
 // browser-sync
-gulp.task('browsersync', () => {
-  if (browsersync === false) {
-    browsersync = require('browser-sync').create();
-    browsersync.init(syncOpts);
-  }
-});
+//gulp.task('browsersync', () => {
+//  if (browsersync === false) {
+//    browsersync = require('browser-sync').create();
+//    browsersync.init(syncOpts);
+//  }
+//});
 
 // watch for file changes
-gulp.task('watch', gulp.parallel('browsersync'), () => {
+gulp.task('watch', () => {
 
   // page changes
-  gulp.watch(php.src, ['php'], browsersync ? browsersync.reload : {});
+  gulp.watch(php.src, gulp.parallel('php'));
 
   // image changes
-  gulp.watch(images.src, ['images']);
+  gulp.watch(images.src, gulp.parallel('images'));
 
     // CSS changes
-  gulp.watch(css.watch, ['css']);
+  gulp.watch(css.watch, gulp.parallel('css'));
 
   // JavaScript main changes
-  gulp.watch(js.src, ['js']);
+  gulp.watch(js.src, gulp.parallel('js'));
 
 });
 
