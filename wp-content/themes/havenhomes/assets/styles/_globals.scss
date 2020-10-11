@@ -1,11 +1,13 @@
 /**
  * Vendor
  * For files from third party libraries.
- *
- * @import 'vendor/imports';
  */
+ @import 'vendor/imports';
+
 
 /**
  * This themes global styles.
  */
-@import 'abstracts/imports';
+@import
+'abstracts/imports',
+'base/imports';
