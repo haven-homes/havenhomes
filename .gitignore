@@ -73,3 +73,5 @@ typings/
 wp-config.php
 wp-config-sample.php
 wp-content/themes/havenhomes/*.css
+build/
+package-lock.json
