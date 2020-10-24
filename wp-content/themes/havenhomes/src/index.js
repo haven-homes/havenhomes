@@ -204,3 +204,142 @@ registerBlockType('havenhomes/hero', {
         );
     }
 });
+
+// ---------------------------
+// ICON BLOCK
+// ---------------------------
+
+registerBlockType('havenhomes/icon', {
+    title: 'Icon Block',
+    description: 'Icon block with SVG image positioned first followed by a title and description in a vertical layout.',
+    icon: 'cover-image',
+    category: 'common',
+
+    attributes: {
+        icon: {
+            type: 'string',
+            default: null
+        },
+        title: {
+            type: 'string',
+            source: 'html',
+            selector: 'h2'
+        },
+        titleColor: {
+            type: 'string',
+            default: 'black'
+        },
+        description: {
+            type: 'string',
+            source: 'html',
+            selector: 'p'
+        },
+        descriptionColor: {
+            type: 'string',
+            default: 'black'
+        },
+    },
+
+    edit: ({ attributes, setAttributes }) => {
+        const {
+            icon,
+            title,
+            titleColor,
+            description,
+            descriptionColor,
+        } = attributes;
+
+        function onSelectIcon(newIcon) {
+            setAttributes( { icon: newIcon.sizes.full.url } );
+        }
+
+        function onChangeTitle(newTitle) {
+            setAttributes( { title: newTitle } );
+        }
+
+        function onTitleColorChange(newColor) {
+            setAttributes( { titleColor: newColor } );
+        }
+
+        function onChangeDescription(newDescription) {
+            setAttributes( { description: newDescription } );
+        }
+
+        function onDescriptionColorChange(newColor) {
+            setAttributes( { descriptionColor: newColor } );
+        }
+
+        return ([
+            <InspectorControls style={ { marginBottom: '40px' } }>
+                <PanelBody title={ 'Icon Settings' }>
+                    <p><strong>Select an Icon</strong></p>
+                    <MediaUpload
+                        onSelect={ onSelectIcon }
+                        type="image"
+                        value={ icon }
+                        render={ ( { open } ) => (
+                            <IconButton
+                                className="editor-media-placeholder__button is-button is-default is-large"
+                                icon="upload"
+                                onClick={ open }>
+                                    Icon
+                            </IconButton>
+
+                        )}/>
+                </PanelBody>
+                <PanelBody title={ 'Font Color Settings' }>
+                    <p><strong>Select a title color:</strong></p>
+                    <ColorPalette value={ titleColor }
+                                  onChange={ onTitleColorChange } />
+
+                    <p><strong>Select a description color:</strong></p>
+                    <ColorPalette value={ descriptionColor }
+                                  onChange={ onDescriptionColorChange } />
+                </PanelBody>
+            </InspectorControls>,
+            <div className="icon-block">
+                <div className="icon-block-icon">
+                    <img src={ icon } />
+                </div>
+                <div className="icon-block-content-wrapper">
+                    <RichText key="editable"
+                              tagName="h3"
+                              placeholder="Title Goes Here"
+                              value={ title }
+                              onChange={ onChangeTitle }
+                              style={ { color: titleColor } }/>
+                    <RichText key="editable"
+                              tagName="p"
+                              placeholder="Write your description here."
+                              value={ description }
+                              onChange={ onChangeDescription }
+                              style={{ color: descriptionColor }}/>
+               </div>
+            </div>
+        ]);
+    },
+
+    save: ({ attributes }) => {
+        const {
+            icon,
+            title,
+            titleColor,
+            description,
+            descriptionColor,
+        } = attributes;
+
+        return (
+            <div className="icon-block">
+                <div className="icon-block-icon">
+                    <img src={ icon } />
+                </div>
+                <div className="icon-block-content-wrapper">
+                    <h3 style={ { color: titleColor } }>{ title }</h3>
+                    <RichText.Content tagName="p"
+                                      value={ description }
+                                      style={{ color: descriptionColor }}/>
+                </div>
+            </div>
+        );
+    }
+});
