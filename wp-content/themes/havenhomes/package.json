@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@wordpress/browserslist-config": "^2.6.0",
-    "@wordpress/scripts": "^5.0.0",
+    "@wordpress/scripts": "5.1.0",
     "autoprefixer": "^9.8.6",
     "browser-sync": "^2.26.12",
     "concurrently": "^5.2.0",
@@ -67,6 +67,7 @@
     "build:rtl-style": "rtlcss style.css style-rtl.css",
     "build:rtl-esb": "rtlcss assets/css/editor-style-block.css assets/css/editor-style-block-rtl.css",
     "build:rtl-esc": "rtlcss assets/css/editor-style-classic.css assets/css/editor-style-classic-rtl.css",
+    "build:scripts": "wp-scripts build",
     "build:vendor-prefixes": "concurrently \"npm run build:vendor-prefixes-style\" \"npm run build:vendor-prefixes-esb\" \"npm run build:vendor-prefixes-esc\"",
     "build:vendor-prefixes-style": "postcss -r --no-map style.css assets/css/editor-style-block.css assets/css/editor-style-classic.css",
     "build:vendor-prefixes-esb": "postcss -r --no-map assets/css/editor-style-block.css ",

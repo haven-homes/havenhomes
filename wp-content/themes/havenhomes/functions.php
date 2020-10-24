@@ -177,6 +177,9 @@ require get_template_directory() . '/classes/class-twentytwenty-non-latin-langua
 // Custom CSS.
 require get_template_directory() . '/inc/custom-css.php';
 
+// Haven Homes Custom Gutenberg Blocks
+require get_template_directory() . '/inc/haven-homes.php';
+
 /**
  * Register and Enqueue Styles.
  */
