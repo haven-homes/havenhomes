@@ -68,6 +68,12 @@ function havenhomes_gutenberg_blocks() {
     register_block_type( 'havenhomes/hero', array(
         'editor_script' => 'hero',
     ));
+
+     wp_register_script( 'icon', get_template_directory_uri() . '/build/index.js', array( 'wp-blocks', 'wp-block-editor', 'wp-components' ));
+
+     register_block_type( 'havenhomes/icon', array(
+             'editor_script' => 'icon',
+         ));
 }
 
 add_action('init', 'havenhomes_gutenberg_blocks');
