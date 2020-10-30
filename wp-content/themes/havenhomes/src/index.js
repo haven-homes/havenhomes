@@ -343,3 +343,58 @@ registerBlockType('havenhomes/icon', {
         );
     }
 });
+
+// ---------------------------
+// CONTACT FORM BLOCK
+// ---------------------------
+
+registerBlockType('havenhomes/contact-form', {
+    title: 'Contact Form Block',
+    description: 'Form block to be used as a contact form.',
+    icon: 'editor-table',
+    category: 'common',
+
+    attributes: {
+        // TODO: Explore allowing content author to add their own action URL in a panel text input field.
+    },
+
+    edit: () => {
+        return (
+            <div className="contact-form-block">
+                <form action="index.php" className="contact-form">
+                    <div className="name-phone-wrapper">
+                        <input type="text" placeholder="Name" />
+                        <input type="text" placeholder="Phone Number" />
+                    </div>
+                    <div className="email-wrapper">
+                        <input type="text" placeholder="Email Address" />
+                    </div>
+                    <textarea placeholder="We'd love to hear from you!"></textarea>
+                    <div className="button-wrapper">
+                        <input type="submit" value="Send" />
+                    </div>
+                </form>
+            </div>
+        );
+    },
+
+    save: () => {
+        return (
+            <div className="contact-form-block">
+                <form action="index.php" className="contact-form">
+                    <div className="name-phone-wrapper">
+                        <input type="text" placeholder="Name" />
+                        <input type="text" placeholder="Phone Number" />
+                    </div>
+                    <div className="email-wrapper">
+                        <input type="text" placeholder="Email Address" />
+                    </div>
+                    <textarea placeholder="We'd love to hear from you!"></textarea>
+                    <div className="button-wrapper">
+                        <input type="submit" value="Send" />
+                    </div>
+                </form>
+            </div>
+        );
+    }
+});
