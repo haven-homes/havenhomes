@@ -16,6 +16,11 @@
 
 				<div class="section-inner">
 
+                    <div class="legal-info">
+                        <a href="privacypolicy.php" target="_blank">Privacy Policy</a> |
+                        <a href="disclaimer.php" target="_blank">Disclaimer</a>
+                    </div>
+
 					<div class="footer-credits">
 
 						<p class="footer-copyright">&copy;
@@ -27,12 +32,6 @@
 							?>
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
 						</p><!-- .footer-copyright -->
-
-						<p class="powered-by-wordpress">
-							<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'twentytwenty' ) ); ?>">
-								<?php _e( 'Powered by WordPress', 'twentytwenty' ); ?>
-							</a>
-						</p><!-- .powered-by-wordpress -->
 
 					</div><!-- .footer-credits -->
 
