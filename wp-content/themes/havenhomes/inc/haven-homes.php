@@ -69,11 +69,17 @@ function havenhomes_gutenberg_blocks() {
         'editor_script' => 'hero',
     ));
 
-     wp_register_script( 'icon', get_template_directory_uri() . '/build/index.js', array( 'wp-blocks', 'wp-block-editor', 'wp-components' ));
+    wp_register_script( 'icon', get_template_directory_uri() . '/build/index.js', array( 'wp-blocks', 'wp-block-editor', 'wp-components' ));
 
-     register_block_type( 'havenhomes/icon', array(
-             'editor_script' => 'icon',
-         ));
+    register_block_type( 'havenhomes/icon', array(
+        'editor_script' => 'icon',
+    ));
+
+    wp_register_script( 'contact-form', get_template_directory_uri() . '/build/index.js', array( 'wp-blocks', 'wp-block-editor', 'wp-components' ));
+
+    register_block_type( 'havenhomes/contact-form', array(
+        'editor_script' => 'contact-form',
+    ));
 }
 
 add_action('init', 'havenhomes_gutenberg_blocks');
